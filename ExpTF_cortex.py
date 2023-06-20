@@ -14,7 +14,7 @@ duration = TotTime*ms
 
 FRout_inh=[]
 FRout_exc=[]
-Npts = 20  #Resolution of the measured TF
+Npts = 21  #Resolution of the measured TF
 i = 0
 j = 1
 for rate_exc in linspace(0, 150, Npts):
@@ -53,8 +53,8 @@ for rate_exc in linspace(0, 150, Npts):
 		G_inh.GsynE=0.0*nS
 		G_inh.Ee=0.*mV
 		G_inh.Ei=-80.*mV
-		G_inh.Te=4.*ms
-		G_inh.Ti=10.*ms
+		G_inh.Te=5.*ms
+		G_inh.Ti=5.*ms
 		# cell parameters
 		G_inh.Cm = 200.*pF
 		G_inh.gl = 10.*nS
@@ -77,8 +77,8 @@ for rate_exc in linspace(0, 150, Npts):
 		G_exc.GsynE=0.0*nS
 		G_exc.Ee=0.*mV
 		G_exc.Ei=-80.*mV
-		G_exc.Te=4.*ms
-		G_exc.Ti=10.*ms
+		G_exc.Te=5.*ms
+		G_exc.Ti=5.*ms
 		# cell
 		G_exc.Cm = 200.*pF
 		G_exc.gl = 10.*nS
