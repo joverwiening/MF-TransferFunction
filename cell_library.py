@@ -7,13 +7,16 @@ P = {}
 def loadparams(scenario):
     return P[scenario]
 
-# load thalamus fitting params
-PTC=np.load('data\\NEW6params_TC.npy')
-PRE=np.load('data\\NEW6params_RE.npy')
-# load cortex fitting params
-PRS=np.load("data\\RS-cell_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
-# PRS=np.load("data\\RS-cell0_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
-PFS=np.load("data\\FS-cell_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
+try:
+    # load thalamus fitting params
+    PTC=np.load('data\\NEW6params_TC.npy')
+    PRE=np.load('data\\NEW6params_RE.npy')
+    # load cortex fitting params
+    PRS=np.load("data\\RS-cell_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
+    # PRS=np.load("data\\RS-cell0_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
+    PFS=np.load("data\\FS-cell_CONFIG1_fit.npy")[[0,1,2,3,5,8,9,6,10,7]]
+except FileNotFoundError:
+    PTC,PRE,PRS,PFS=[0]*4
 
 
 # THALAMUS-CORTEX =================================
@@ -341,3 +344,43 @@ params['FS'] = AttrDict({
     'Ei' : -80e-3
 })
 P['cortex_updown'] = params
+
+# Farzin -----------------------------------------
+
+params = {}
+
+params['RS'] = AttrDict({
+    'P' : PRS,
+    'Nexc' : 400,
+    'Ninh' : 200,
+    'Qe' : 1.5e-9,
+    'Qi' : 5e-9,
+    'Cm' : 200e-12,
+    'El' : -65e-3,
+    'Gl' : 10e-9,
+    'Tw' : 200e-3,
+    'a' : 4e-9,
+    'b' : 40e-12,
+    'Ti' : 10e-3,
+    'Te' : 4e-3,
+    'Ee' : 0,
+    'Ei' : -80e-3
+})
+params['FS'] = AttrDict({
+    'P' : PFS,
+    'Nexc' : 400,
+    'Ninh' : 100,
+    'Qe' : 1.5e-9,
+    'Qi' : 5e-9,
+    'Cm' : 200e-12,
+    'El' : -65e-3,
+    'Gl' : 10e-9,
+    'Tw' : 200e-3,
+    'a' : 0,
+    'b' : 0,
+    'Ti' : 10e-3,
+    'Te' : 4e-3,
+    'Ee' : 0,
+    'Ei' : -80e-3
+})
+P['cortex_farzin'] = params
