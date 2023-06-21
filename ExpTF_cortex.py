@@ -44,7 +44,7 @@ for rate_exc in linspace(0, 150, Npts):
 		# Population 1 - FS - Inhibitory
 
 		b_FS = 0.*pA
-		G_inh = NeuronGroup(N_inh, eqs, threshold='v > -20*mV', reset='v = -60*mV; w += b_FS', refractory='5*ms', method='heun')
+		G_inh = NeuronGroup(1, eqs, threshold='v > -20*mV', reset='v = -60*mV; w += b_FS', refractory='5*ms', method='heun')
 		#init:
 		G_inh.v = -65*mV
 		G_inh.w = 0.0*pA
@@ -69,7 +69,7 @@ for rate_exc in linspace(0, 150, Npts):
 		# Population 2 - RS - Excitatory 
 		
 		b_RS = 40.*pA
-		G_exc = NeuronGroup(N_exc, eqs, threshold='v > -20*mV', reset='v = -60*mV; w += b_RS', refractory='5*ms',  method='heun')
+		G_exc = NeuronGroup(1, eqs, threshold='v > -20*mV', reset='v = -60*mV; w += b_RS', refractory='5*ms',  method='heun')
 		G_exc.v = -65.*mV
 		G_exc.w = 0.0*pA
 		# synaptic
@@ -161,8 +161,8 @@ for rate_exc in linspace(0, 150, Npts):
 	i=i+1
 
 
-np.save(f'data\\ExpTF_cortex_inh_Nstp{Npts}.npy', FRout_inh)
-np.save(f'data\\ExpTF_cortex_exc_Nstp{Npts}.npy', FRout_exc)
+np.save(f'data\\ExpTF_cortex_inh_Nstp{Npts}_single.npy', FRout_inh)
+np.save(f'data\\ExpTF_cortex_exc_Nstp{Npts}_single.npy', FRout_exc)
 plt.figure()
 plt.imshow(FRout_inh)
 plt.figure()
